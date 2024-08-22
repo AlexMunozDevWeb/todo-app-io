@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('../public/fonts/JosefinSans-Bold.eot');
+  src: url('../public/fonts/JosefinSans-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../public/fonts/JosefinSans-Bold.woff2') format('woff2'),
+      url('../public/fonts/JosefinSans-Bold.woff') format('woff'),
+      url('../public/fonts/JosefinSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url('../public/fonts/JosefinSans-Regular.eot');
+  src: url('../public/fonts/JosefinSans-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../public/fonts/JosefinSans-Regular.woff2') format('woff2'),
+      url('../public/fonts/JosefinSans-Regular.woff') format('woff'),
+      url('../public/fonts/JosefinSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body{
+  font-family: 'Josefin Sans', sans-serif;
+}

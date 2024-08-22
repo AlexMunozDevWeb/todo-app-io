@@ -2,7 +2,9 @@ function App() {
 
   return (
     <>
-      <h1>todo app</h1>
+      <header>
+        <h1>todo app</h1>
+      </header>
     </>
   )
 }
