@@ -70,6 +70,16 @@ body{
   }
 }
 
+/* Inputs wrapper */
+.input-wrapper{
+  display: flex;
+  gap: 15px;
+  
+  background-color: var(--very-dark-desaturated-blue);
+  border-radius: 7px;
+  padding: 10px 20px;
+}
+
 /* Estilos checkbox */
 input[type="checkbox"] {
   position: relative;
@@ -96,6 +106,20 @@ input[type="checkbox"]:checked::after {
   top: 50%;
   transform: translate(-50%, -50%);
   left: 50%;
+}
+
+/* Estilos text */
+input[type="text"]{
+  background-color: var(--very-dark-desaturated-blue);
+  border: none;
+  color: var(--dark-grayish-blue);
+  line-height: 15px;
+  padding: 10px 5px;
+  width: 100%;
+}
+input[type="text"]:active,
+input[type="text"]:focus{
+  outline: none;  
 }
 
 /* Header */
@@ -130,24 +154,4 @@ input[type="checkbox"]:checked::after {
   border: none;
   cursor: pointer;
   height: fit-content;
-}
-.header-wrapper .input-wrapper{
-  display: flex;
-  gap: 15px;
-  
-  background-color: var(--very-dark-desaturated-blue);
-  border-radius: 7px;
-  padding: 10px 20px;
-}
-.header-wrapper .input-wrapper #text_todo{
-  background-color: var(--very-dark-desaturated-blue);
-  border: none;
-  color: var(--dark-grayish-blue);
-  line-height: 15px;
-  padding: 10px 5px;
-  width: 100%;
-}
-.header-wrapper .input-wrapper #text_todo:active,
-.header-wrapper .input-wrapper #text_todo:focus{
-  outline: none;
 }
