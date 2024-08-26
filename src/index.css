@@ -101,6 +101,7 @@ p{
 /* Estilos checkbox */
 input[type="checkbox"] {
   position: relative;
+  cursor: pointer;
   height: 42px; width: 42px;
   clip-path: circle(38%);
 }
@@ -130,7 +131,7 @@ input[type="checkbox"]:checked::after {
 input[type="text"]{
   background-color: var(--very-dark-desaturated-blue);
   border: none;
-  color: var(--dark-grayish-blue);
+  color: var(--light-grayish-blue-hover);
   line-height: 15px;
   padding: 10px 5px;
   width: 100%;
@@ -147,9 +148,54 @@ label{
 }
 
 /* Estilos button */
+ button.add-task{
+  position: relative;
+
+  background-color: var(--very-dark-desaturated-blue);
+  border: 2px solid var(--very-dark-grayish-blue);
+  border-radius: 50%;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  height: 28px; width: 30px;
+}
+
+/*
+button.add-task:active{
+  background-color: var(--very-dark-desaturated-blue);
+} 
+*/
+.add-task::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  height: 29px; width: 30px;
+  top: -3px; left: -2px;
+  padding: 2px;
+  z-index: 0;
+
+  background: var(--check-background); /* Gradient colors */
+  -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+/* Show gradient border on hover */
+.add-task:hover::before {
+  opacity: 1;
+}
+
 button.form-button{
   background-color: var(--very-dark-desaturated-blue);
   border: unset;
   color: var(--dark-grayish-blue);
   cursor: pointer;
+}
+button.form-button:hover{
+  color: var(--light-grayish-blue-hover) ;
 }

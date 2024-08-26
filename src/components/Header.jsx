@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -75,10 +74,18 @@ export default function Header() {
 
         </div>
 
-        <div className="form-wrapper">
-          <input type="checkbox" id="create_task" />
-          <input type="text" id="text_todo" placeholder="Crear nuevo todo..." />
-        </div>
+        <form>
+          <div className="form-wrapper">
+            <button className="add-task" />
+            <input 
+              type="text" 
+              id="text_todo" 
+              placeholder="Crear nuevo todo..." 
+              onChange={handleCreating}
+            />
+          </div>
+        </form>
+
       </div>
     </StyledHeader>
   )
