@@ -78,7 +78,7 @@ export default function Header() {
 
           </div>
 
-          <div className="input-wrapper">
+          <div className="form-wrapper">
             <input type="checkbox" id="create_task" />
             <input type="text" id="text_todo" placeholder="Crear nuevo todo..." />
           </div>

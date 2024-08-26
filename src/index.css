@@ -71,8 +71,9 @@ body{
 }
 
 /* Inputs wrapper */
-.input-wrapper{
+.form-wrapper{
   display: flex;
+  align-items: center;
   gap: 15px;
   
   background-color: var(--very-dark-desaturated-blue);
@@ -120,4 +121,9 @@ input[type="text"]{
 input[type="text"]:active,
 input[type="text"]:focus{
   outline: none;  
+}
+
+/* Estilos label */
+label{
+  color: var(--dark-grayish-blue);
 }
