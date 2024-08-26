@@ -48,7 +48,7 @@
   --very-dark-grayish-blue-two: hsl(237, 14%, 26%);
 }
 
-/*** Estilos generales ***/
+/*** General styles ***/
 body{
   font-family: 'Josefin Sans', sans-serif;
   font-size: 18px;
@@ -75,18 +75,16 @@ body{
 *::after {
   box-sizing: border-box;
 }
-
-/* Reseteo de márgenes y paddings */
 body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
     margin: 0;
     padding: 0;
 }
-
 p{
   color: var(--dark-grayish-blue);
 }
 
-/* Inputs wrapper */
+/** Inputs styles **/
+/* Input wrapper */
 .form-wrapper{
   display: flex;
   align-items: center;
@@ -97,8 +95,7 @@ p{
   padding: 10px 20px;
   min-height: 65px;
 }
-
-/* Estilos checkbox */
+/* Input checkbox */
 input[type="checkbox"] {
   position: relative;
   cursor: pointer;
@@ -126,8 +123,7 @@ input[type="checkbox"]:checked::after {
   transform: translate(-50%, -50%);
   left: 50%;
 }
-
-/* Estilos text */
+/* Input text */
 input[type="text"]{
   background-color: var(--very-dark-desaturated-blue);
   border: none;
@@ -140,15 +136,15 @@ input[type="text"]:active,
 input[type="text"]:focus{
   outline: none;  
 }
-
-/* Estilos label */
+/* Label styles */
 label{
   color: var(--dark-grayish-blue);
   height: 15px;
 }
 
-/* Estilos button */
- button.add-task{
+/** Button styles **/
+/* Button add-task */
+button.add-task{
   position: relative;
 
   background-color: var(--very-dark-desaturated-blue);
@@ -160,13 +156,7 @@ label{
   
   height: 28px; width: 30px;
 }
-
-/*
-button.add-task:active{
-  background-color: var(--very-dark-desaturated-blue);
-} 
-*/
-.add-task::before {
+button.add-task::before {
   content: '';
   position: absolute;
   border-radius: 50%;
@@ -184,12 +174,10 @@ button.add-task:active{
   transition: opacity 0.3s ease;
   opacity: 0;
 }
-
-/* Show gradient border on hover */
-.add-task:hover::before {
+button.add-task:hover::before {
   opacity: 1;
 }
-
+/* Button form-button */
 button.form-button{
   background-color: var(--very-dark-desaturated-blue);
   border: unset;
