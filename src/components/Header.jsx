@@ -9,7 +9,7 @@ const StyledHeader = styled.header`
     height: auto;width: 100%;
     padding: 50px 0 85px 0;
 
-    & .bg-image{
+    .bg-image{
       position: absolute;
       width: 100%;height: 100%;
   
@@ -17,19 +17,19 @@ const StyledHeader = styled.header`
       object-fit: cover;
       z-index: -1;
     }
-    & .title-button-wrapper{
+    .title-button-wrapper{
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 20px;
 
-      & > h1{
+      > h1{
         color: var(--very-light-gray);
         height: 31px;
         letter-spacing: 10px;
       }
 
-      & > button{
+      > button{
         background-color: transparent;
         border: none;
         cursor: pointer;
