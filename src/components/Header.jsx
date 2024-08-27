@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -37,7 +39,8 @@ const StyledHeader = styled.header`
   }
 `;
 
-export default function Header() {
+// Se le pasa por parámetro la desestructuración del objeto para facilitar su acceso
+export default function Header( {addItem} ) {
 
   let mobileDarkModeImg = 'bg-mobile-dark.webp';
   let deskyopDarkModeImg = 'bg-desktop-dark.webp';
@@ -45,13 +48,23 @@ export default function Header() {
   let iconSun = 'icon-sun.svg' 
   let iconMoon = 'icon-moon.svg' 
 
-  // const [darkMode, setDarkMode] = useState(true)
+  const [newTodo, setNewTodo] = useState('')
 
-  // const handleChange = () => {
-  //   console.log(darkMode);
-  //   darkMode ? setDarkMode(false) : setDarkMode(true)  
-  //   console.log(darkMode);
-  // }
+  // Evento que obtiene el valor del input y se le añade al state temporal
+  const handleChange = (e) => {
+    setNewTodo( e.target.value )
+  }
+
+  // Evento click que añade el string del state temporal al de la lista de TODOS
+  const handleClick = (e) => {
+    e.preventDefault()
+    if (newTodo.length > 0) {
+      addItem( {id: uuidv4(),
+                active: true,
+                name: newTodo} )
+      setNewTodo('')
+    }
+  }
 
   return (
     <StyledHeader>
@@ -65,10 +78,7 @@ export default function Header() {
         <div className="title-button-wrapper">
 
           <h1>TODO</h1>
-          <button
-            // onClick={ () => ( darkMode ? setDarkMode(false) : setDarkMode(true) )}
-            // onChange={handleChange}
-          >
+          <button>
             <img src={`/images/${iconSun}`} alt="Imagen para cambiar a dark/light mode" />
           </button>
 
@@ -76,12 +86,16 @@ export default function Header() {
 
         <form>
           <div className="form-wrapper">
-            <button className="add-task" />
+            <button 
+              className="add-task" 
+              onClick={handleClick}
+            />
             <input 
               type="text" 
               id="text_todo" 
-              placeholder="Crear nuevo todo..." 
-              onChange={handleCreating}
+              placeholder="Crear nuevo todo..."
+              value={newTodo}
+              onChange={handleChange}
             />
           </div>
         </form>
