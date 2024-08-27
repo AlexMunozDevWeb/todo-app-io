@@ -6,16 +6,20 @@ import { useTodoList } from "./hooks/useTodoList"
 function App() {
 
   const {todoList, 
-         addTodoList} = useTodoList()
+         addItemTodo,
+         removeItemTodo} = useTodoList()
 
+  console.table(todoList);
+      
   return (
     <>
       <Header
         todoList={todoList}
-        addItem={addTodoList}
+        addItem={addItemTodo}
       />
       <ListTodoWrapper 
         todoList={todoList}
+        removeItemTodo={removeItemTodo}
       />
     </>
   )
