@@ -13,42 +13,14 @@ const StyleMain = styled.main`
 
         .wrapper-{
           &tasks{
-            border-radius: 7px;
-
-            .form-wrapper{
-              position: relative;
+            .form-wrapper.info-delete{
+              display: flex;
+              justify-content: space-between;
+              padding: 10px 30px;
+              margin-bottom: 30px;
               border-radius: unset;
-              border-bottom: 1px solid var(--very-dark-grayish-blue);
-
-              &:first-of-type{
-                border-top-left-radius: 7px;
-                border-top-right-radius: 7px;
-              }
-
-              &:last-of-type{
-                border-bottom: unset;
-                border-bottom-right-radius: 7px;
-                border-bottom-left-radius: 7px;
-              }
-
-              & input[type="checkbox"]:checked + label {
-                  text-decoration: line-through;
-              }
-
-              & .delete-task{
-                position: absolute;
-                right: 26px;
-                cursor: pointer;
-              }
-
-              &.info-delete{
-                display: flex;
-                justify-content: space-between;
-                padding: 10px 30px;
-                margin-bottom: 30px;
-  
-              }
-
+              border-bottom-right-radius: 7px;
+              border-bottom-left-radius: 7px;
             }
           }
           &filters{
