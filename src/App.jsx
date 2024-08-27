@@ -5,11 +5,12 @@ import { useTodoList } from "./hooks/useTodoList"
 
 function App() {
 
-  const {todoList, 
+  const {todoList,
+         todoFilter, 
          addItemTodo,
-         removeItemTodo} = useTodoList()
-
-  console.table(todoList);
+         removeItemTodo,
+         filterByActive,
+         changeActiveField} = useTodoList()
       
   return (
     <>
@@ -19,7 +20,10 @@ function App() {
       />
       <ListTodoWrapper 
         todoList={todoList}
+        todoFilter={todoFilter}
         removeItemTodo={removeItemTodo}
+        filterByActive={filterByActive}
+        changeActiveField={changeActiveField}
       />
     </>
   )

@@ -24,16 +24,24 @@ const StyleTask = styled.div`
 }
 `;
 
-export default function SingleTodo({task,removeItemTodo}) {
+export default function SingleTodo( { task, removeItemTodo, indice, changeActiveField} ) {
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     removeItemTodo(task)
+  }
+
+  const handleChange = () => {
+    changeActiveField(task.id)
   }
 
   return (
     <StyleTask className="form-wrapper">
-      <input type="checkbox" id="create_task1"/>
-      <label htmlFor="create_task1">{task.name}</label>
+      <input 
+        type="checkbox" 
+        id={`task_${indice}`}
+        onChange={handleChange}
+      />
+      <label htmlFor={`task_${indice}`}>{task.name}</label>
       <img 
         src="/images/icon-cross.svg" 
         className="delete-task" 

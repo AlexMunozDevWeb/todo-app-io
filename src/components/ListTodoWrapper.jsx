@@ -36,7 +36,9 @@ const StyleMain = styled.main`
   }
 `; 
 
-export default function ListTodoWrapper({todoList,removeItemTodo}) {
+export default function ListTodoWrapper({todoList,todoFilter,removeItemTodo, filterByActive, changeActiveField}) {
+
+  const tasks = todoFilter.length === 0 ? todoList : todoFilter
 
   return (
     <StyleMain className="main-content">
@@ -45,11 +47,13 @@ export default function ListTodoWrapper({todoList,removeItemTodo}) {
         <form className="tasks-filter-container">
           <div className="wrapper-tasks">
             
-            { todoList.map( (task) => (
+            { tasks.map( (task, index) => (
               <SingleTodo 
+                indice={index}
                 key={task.id}
                 task={task}
                 removeItemTodo={removeItemTodo}
+                changeActiveField={changeActiveField}
               />
             ) ) }
 
@@ -61,7 +65,10 @@ export default function ListTodoWrapper({todoList,removeItemTodo}) {
 
           <div className="wrapper-filters form-wrapper">
             <button className="form-button">All</button>
-            <button className="form-button">Active</button>
+            <button 
+              className="form-button"
+              onClick={filterByActive}
+            >Active</button>
             <button className="form-button">Completed</button>
           </div>
 
