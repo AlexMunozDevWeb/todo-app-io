@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SingleTodo from "./SingleTodo";
+import { useState } from "react";
 
 const StyleMain = styled.main`
   &.main-content{
@@ -38,10 +39,13 @@ const StyleMain = styled.main`
 
 export default function ListTodoWrapper({todoList,todoFilter,removeItemTodo, filterTodo, changeActiveField, restartTodo}) {
 
+  const [activeButton, setActiveButton] = useState(null);
+
   const tasks = todoFilter.length === 0 ? todoList : todoFilter
 
   const handleClick = (e) => {
-    const buttonType = e.target.attributes['data-type'].value;
+    const buttonType = e.target.attributes['data-type'].value
+    setActiveButton(buttonType);
     filterTodo(e, buttonType)
   }
 
@@ -73,18 +77,18 @@ export default function ListTodoWrapper({todoList,todoFilter,removeItemTodo, fil
           <div className="wrapper-filters form-wrapper">
 
             <button 
-              className="form-button"
+              className={`form-button ${activeButton === 'all' ? 'active' : ''}`}
               data-type="all"
               onClick={handleClick}>All</button>
               
             <button 
-              className="form-button"
+              className={`form-button ${activeButton === 'active' ? 'active' : ''}`}
               data-type="active"
               onClick={handleClick}
             >Active</button>
 
             <button 
-              className="form-button"
+              className={`form-button ${activeButton === 'completed' ? 'active' : ''}`}
               data-type="completed"
               onClick={handleClick}>Completed</button>
           </div>

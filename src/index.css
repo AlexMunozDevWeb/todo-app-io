@@ -179,11 +179,16 @@ button.add-task:hover::before {
 }
 /* Button form-button */
 button.form-button{
-  background-color: var(--very-dark-desaturated-blue);
-  border: unset;
-  color: var(--dark-grayish-blue);
-  cursor: pointer;
+background-color: var(--very-dark-desaturated-blue);
+border: unset;
+color: var(--dark-grayish-blue);
+cursor: pointer;
+transition: all .3s ease;
 }
 button.form-button:hover{
   color: var(--light-grayish-blue-hover) ;
+}
+button.form-button.active,
+button.form-button.active:hover{
+  color: var(--blue-bright);
 }
