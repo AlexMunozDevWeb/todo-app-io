@@ -30,10 +30,15 @@ export const useTodoList = () => {
   }
 
   // Filter by active todo
-  function filterByActive(e){
-    e.preventDefault()
-    const activeTodo = todoList.filter( todoList => todoList.active === true )
-    setTodoFilter(activeTodo)
+  function filterTodo(e, buttonType){
+    e.preventDefault()    
+    let updatedTodo = []
+
+    updatedTodo = buttonType === 'active' ? todoList.filter( todoList => todoList.active ) : 
+                  buttonType === 'completed' ? todoList.filter( todoList => !todoList.active ): [] 
+                  
+    console.log(updatedTodo);
+    setTodoFilter(updatedTodo)
   }
 
   // Restart the TODO list
@@ -48,7 +53,7 @@ export const useTodoList = () => {
     todoFilter,
     addItemTodo,
     removeItemTodo,
-    filterByActive,
+    filterTodo,
     changeActiveField,
     restartTodo
   }

@@ -36,9 +36,14 @@ const StyleMain = styled.main`
   }
 `; 
 
-export default function ListTodoWrapper({todoList,todoFilter,removeItemTodo, filterByActive, changeActiveField, restartTodo}) {
+export default function ListTodoWrapper({todoList,todoFilter,removeItemTodo, filterTodo, changeActiveField, restartTodo}) {
 
   const tasks = todoFilter.length === 0 ? todoList : todoFilter
+
+  const handleClick = (e) => {
+    const buttonType = e.target.attributes['data-type'].value;
+    filterTodo(e, buttonType)
+  }
 
   return (
     <StyleMain className="main-content">
@@ -66,12 +71,22 @@ export default function ListTodoWrapper({todoList,todoFilter,removeItemTodo, fil
           </div>
 
           <div className="wrapper-filters form-wrapper">
-            <button className="form-button">All</button>
+
             <button 
               className="form-button"
-              onClick={filterByActive}
+              data-type="all"
+              onClick={handleClick}>All</button>
+              
+            <button 
+              className="form-button"
+              data-type="active"
+              onClick={handleClick}
             >Active</button>
-            <button className="form-button">Completed</button>
+
+            <button 
+              className="form-button"
+              data-type="completed"
+              onClick={handleClick}>Completed</button>
           </div>
 
         </form>

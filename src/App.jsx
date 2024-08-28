@@ -9,7 +9,7 @@ function App() {
          todoFilter, 
          addItemTodo,
          removeItemTodo,
-         filterByActive,
+         filterTodo,
          changeActiveField,
          restartTodo} = useTodoList()
       
@@ -23,7 +23,7 @@ function App() {
         todoList={todoList}
         todoFilter={todoFilter}
         removeItemTodo={removeItemTodo}
-        filterByActive={filterByActive}
+        filterTodo={filterTodo}
         changeActiveField={changeActiveField}
         restartTodo={restartTodo}
       />

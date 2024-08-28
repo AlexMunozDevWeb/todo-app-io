@@ -40,6 +40,7 @@ export default function SingleTodo( { task, removeItemTodo, indice, changeActive
         type="checkbox" 
         id={`task_${indice}`}
         onChange={handleChange}
+        checked={task.active ? false : true}        
       />
       <label htmlFor={`task_${indice}`}>{task.name}</label>
       <img 
