@@ -36,13 +36,21 @@ export const useTodoList = () => {
     setTodoFilter(activeTodo)
   }
 
+  // Restart the TODO list
+  function restartTodo(e){
+    e.preventDefault()
+    const updatedTodo = todoList.filter( todoList => todoList.active === true )
+    setTodoList(updatedTodo)
+  }
+
   return {
     todoList,
     todoFilter,
     addItemTodo,
     removeItemTodo,
     filterByActive,
-    changeActiveField
+    changeActiveField,
+    restartTodo
   }
 }
 
