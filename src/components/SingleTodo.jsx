@@ -11,11 +11,11 @@ const StyleTask = styled.div`
     border-top-right-radius: 7px;
   }
 
-  & input[type="checkbox"]:checked + label {
-      text-decoration: line-through;
+  .task-name{
+    margin-left: -29px;
   }
 
-  & .delete-task{
+  .delete-task{
     position: absolute;
     right: 26px;
     cursor: pointer;
@@ -42,13 +42,18 @@ export default function SingleTodo( { task, removeItemTodo, indice, changeActive
         onChange={handleChange}
         checked={task.active ? false : true}        
       />
-      <label htmlFor={`task_${indice}`}>{task.name}</label>
-      <img 
+      
+      <label className="img-box" htmlFor={`task_${indice}`}>
+        <img src="../public/images/icon-check.svg" alt="Imagen check" />
+      </label>
+
+      <label className="task-name">{task.name}</label>
+      <img
         src="/images/icon-cross.svg" 
         className="delete-task" 
         alt="Eliminar tarea"
         onClick={handleClick}
-        />
+      />
     </StyleTask>
   )
 }
