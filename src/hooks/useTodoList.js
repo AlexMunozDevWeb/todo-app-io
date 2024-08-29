@@ -1,11 +1,15 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export const useTodoList = () => {
 
   const [todoList, setTodoList] = useState([])
   const [todoFilter, setTodoFilter] = useState([])
   const [activeFilter, setActiveFilter] = useState( {active: false, type: 'all'} )
-  const [darkMode, setDarkMode] = useState( false )
+  const [darkMode, setDarkMode] = useState( true )
+
+  useEffect(() => {
+    darkMode ? document.getElementById('main-app').classList.add('dark-mode') : document.getElementById('main-app').classList.remove('dark-mode')
+  }, [darkMode]);
 
   // Add an element to the state
   function addItemTodo(task) {    
@@ -82,6 +86,7 @@ export const useTodoList = () => {
     todoList,
     todoFilter,
     activeFilter,
+    darkMode,
     addItemTodo,
     removeItemTodo,
     filterTodo,

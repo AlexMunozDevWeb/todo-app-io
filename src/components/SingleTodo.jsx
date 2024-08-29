@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
 const StyleTask = styled.div`
-  &.form-wrapper{
-    background-color: var(--very-dark-desaturated-blue);
+  &.single-task{
     position: relative;
     border-radius: unset;
-    border-bottom: 1px solid var(--very-dark-grayish-blue);
 
     &:first-of-type{
       border-top-left-radius: 7px;
@@ -28,11 +26,8 @@ const StyleTask = styled.div`
       justify-content: center;
       position: relative;
       left: -29px;
-
-      background-color: var(--very-dark-desaturated-blue);
-      border: 2px solid var(--very-dark-grayish-blue);
+      
       border-radius: 50%;
-      transition: all 0.3s ease;
       cursor: pointer;
       
       height: 31px; width: 31px;
@@ -62,7 +57,6 @@ const StyleTask = styled.div`
         linear-gradient(#fff 0 0);
         -webkit-mask-composite: destination-out;
         mask-composite: exclude;
-        transition: opacity 0.3s ease;
         opacity: 0;
       }
 
@@ -89,7 +83,7 @@ const StyleTask = styled.div`
   }
 `;
 
-export default function SingleTodo( { task, removeItemTodo, indice, changeActiveField} ) {
+export default function SingleTodo( { task, removeItemTodo, indice, changeActiveField } ) {
 
   const handleClick = () => {
     removeItemTodo(task)
@@ -100,7 +94,7 @@ export default function SingleTodo( { task, removeItemTodo, indice, changeActive
   }
 
   return (
-    <StyleTask className="form-wrapper">
+    <StyleTask className={`form-wrapper single-task`}>
       <input 
         type="checkbox" 
         id={`task_${indice}`}

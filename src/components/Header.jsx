@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -10,9 +11,7 @@ const StyledHeader = styled.header`
   padding: 50px 0 85px 0;
 
   input[type="text"]{
-    background-color: var(--very-dark-desaturated-blue);
     border: none;
-    color: var(--light-grayish-blue-hover);
     line-height: 15px;
     padding: 10px 5px;
     width: 100%;
@@ -38,7 +37,6 @@ const StyledHeader = styled.header`
     margin-bottom: 20px;
 
     > h1{
-      color: var(--very-light-gray);
       height: 31px;
       letter-spacing: 10px;
     }
@@ -53,16 +51,11 @@ const StyledHeader = styled.header`
   }
 
   .form-wrapper{
-    background-color: var(--very-dark-desaturated-blue);
-
     button.add-task{
       position: relative;
 
-      background-color: var(--very-dark-desaturated-blue);
-      border: 2px solid var(--very-dark-grayish-blue);
       border-radius: 50%;
 
-      transition: all 0.3s ease;
       cursor: pointer;
       
       height: 28px; width: 30px;
@@ -82,7 +75,6 @@ const StyledHeader = styled.header`
             linear-gradient(#fff 0 0);
         -webkit-mask-composite: destination-out;
         mask-composite: exclude;
-        transition: opacity 0.3s ease;
         opacity: 0;
       }
 
@@ -96,13 +88,10 @@ const StyledHeader = styled.header`
 `;
 
 // Se le pasa por parámetro la desestructuración del objeto para facilitar su acceso
-export default function Header( {addItem, changeDarkMode} ) {
+export default function Header( {addItem, darkMode, changeDarkMode} ) {
 
-  let mobileDarkModeImg = 'bg-mobile-dark.webp';
-  let deskyopDarkModeImg = 'bg-desktop-dark.webp';
-
-  let iconSun = 'icon-sun.svg' 
-  let iconMoon = 'icon-moon.svg' 
+  const bgDarkMode = darkMode ? 'bg-mobile-dark.webp' : 'bg-mobile-light.webp'
+  const iconDarkMode = darkMode ? 'icon-sun.svg' : 'icon-moon.svg'
 
   const [newTodo, setNewTodo] = useState('')
 
@@ -125,7 +114,7 @@ export default function Header( {addItem, changeDarkMode} ) {
   return (
     <StyledHeader>
       <img 
-        src={`/images/${mobileDarkModeImg}`} 
+        src={`/images/${bgDarkMode}`} 
         alt="Imagen desktop dark mode" 
         className="bg-image"
       />
@@ -137,7 +126,7 @@ export default function Header( {addItem, changeDarkMode} ) {
           <button 
             onClick={changeDarkMode}
           >
-            <img src={`/images/${iconSun}`} alt="Imagen para cambiar a dark/light mode" />
+            <img src={`/images/${iconDarkMode}`} alt="Imagen para cambiar a dark/light mode" />
           </button>
 
         </div>

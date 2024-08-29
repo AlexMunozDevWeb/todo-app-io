@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const StyleMain = styled.main`
   &.main-content{
-    background-color: var(--very-dark-blue);
     display: flex;
     min-height: calc(100vh - 300px);
 
@@ -15,7 +14,6 @@ const StyleMain = styled.main`
         .wrapper-{
           &tasks{
             .form-wrapper.info-delete{
-              background-color: var(--very-dark-desaturated-blue);
               display: flex;
               justify-content: space-between;
               padding: 10px 30px;
@@ -26,7 +24,6 @@ const StyleMain = styled.main`
             }
           }
           &filters{
-            background-color: var(--very-dark-desaturated-blue);
             display: flex;
             justify-content: center;
             gap: 15px;
@@ -35,15 +32,8 @@ const StyleMain = styled.main`
         }
 
         button.form-button{
-          background-color: var(--very-dark-desaturated-blue);
           border: unset;
-          color: var(--dark-grayish-blue);
           cursor: pointer;
-          transition: all .3s ease;
-
-          &:hover{
-            color: var(--light-grayish-blue-hover) ;
-          }
 
           &.active, &.active:hover{
             color: var(--blue-bright);
