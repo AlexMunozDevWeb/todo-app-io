@@ -12,13 +12,15 @@ function App() {
          removeItemTodo,
          filterTodo,
          changeActiveField,
-         clearCompleted} = useTodoList()
+         clearCompleted,
+         changeDarkMode} = useTodoList()
       
   return (
     <>
       <Header
         todoList={todoList}
         addItem={addItemTodo}
+        changeDarkMode={changeDarkMode}
       />
       <ListTodoWrapper 
         todoList={todoList}

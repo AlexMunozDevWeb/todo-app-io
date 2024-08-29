@@ -96,7 +96,7 @@ const StyledHeader = styled.header`
 `;
 
 // Se le pasa por parámetro la desestructuración del objeto para facilitar su acceso
-export default function Header( {addItem} ) {
+export default function Header( {addItem, changeDarkMode} ) {
 
   let mobileDarkModeImg = 'bg-mobile-dark.webp';
   let deskyopDarkModeImg = 'bg-desktop-dark.webp';
@@ -134,7 +134,9 @@ export default function Header( {addItem} ) {
         <div className="title-button-wrapper">
 
           <h1>TODO</h1>
-          <button>
+          <button 
+            onClick={changeDarkMode}
+          >
             <img src={`/images/${iconSun}`} alt="Imagen para cambiar a dark/light mode" />
           </button>
 

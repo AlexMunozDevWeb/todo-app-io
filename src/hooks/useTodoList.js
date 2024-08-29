@@ -5,6 +5,7 @@ export const useTodoList = () => {
   const [todoList, setTodoList] = useState([])
   const [todoFilter, setTodoFilter] = useState([])
   const [activeFilter, setActiveFilter] = useState( {active: false, type: 'all'} )
+  const [darkMode, setDarkMode] = useState( false )
 
   // Add an element to the state
   function addItemTodo(task) {    
@@ -73,6 +74,10 @@ export const useTodoList = () => {
     setTodoList(updatedTodo)
   }
 
+  function changeDarkMode() {
+    setDarkMode(!darkMode) 
+  }
+
   return {
     todoList,
     todoFilter,
@@ -82,6 +87,7 @@ export const useTodoList = () => {
     filterTodo,
     changeActiveField,
     clearCompleted,
+    changeDarkMode
   }
 }
 
