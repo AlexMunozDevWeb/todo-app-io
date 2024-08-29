@@ -37,11 +37,12 @@ const StyleMain = styled.main`
   }
 `; 
 
-export default function ListTodoWrapper({todoList,todoFilter,removeItemTodo, filterTodo, changeActiveField, restartTodo}) {
+export default function ListTodoWrapper({todoList,todoFilter,activeFilter,removeItemTodo,filterTodo,
+                                         changeActiveField, restartTodo}) {
 
   const [activeButton, setActiveButton] = useState(null);
 
-  const tasks = todoFilter.length === 0 ? todoList : todoFilter
+  const tasks = activeFilter ? todoFilter : todoList
 
   const handleClick = (e) => {
     const buttonType = e.target.attributes['data-type'].value
@@ -67,7 +68,7 @@ export default function ListTodoWrapper({todoList,todoFilter,removeItemTodo, fil
             ) ) }
 
             <div className="info-delete form-wrapper">
-              <p>{`${todoList.length} items left`}</p>
+              <p>{ activeFilter.active ? `${todoFilter.length} items left` : `${todoList.length} items left` }</p>
               <button 
                 className="form-button"
                 onClick={restartTodo}>Clear Completed</button>

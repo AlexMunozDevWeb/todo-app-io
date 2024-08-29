@@ -4,14 +4,22 @@ export const useTodoList = () => {
 
   const [todoList, setTodoList] = useState([])
   const [todoFilter, setTodoFilter] = useState([])
+  const [activeFilter, setActiveFilter] = useState( {active: false, type: 'all'} )
 
   // Add an element to the state
-  function addItemTodo(task) {
+  function addItemTodo(task) {    
+    if(activeFilter.type !== 'completed'){
+      setTodoFilter( [...todoFilter, task] )
+    }
     setTodoList( [...todoList, task] )
   }
 
   // Remove an element to the state
   function removeItemTodo(taskToRemove){
+    if( todoFilter.length > 0 ){
+      const updatedTodoList = todoFilter.filter( todoList => todoList.id !== taskToRemove.id )
+      setTodoFilter(updatedTodoList)
+    }
     const updatedTodoList = todoList.filter( todoList => todoList.id !== taskToRemove.id )
     setTodoList(updatedTodoList)
   }
@@ -22,6 +30,13 @@ export const useTodoList = () => {
    * * prevState -> es una función que recibe el estado anterios
    */
   function changeActiveField(taskId){
+    if( todoFilter.length > 0 ){
+      setTodoFilter(prevState =>
+        prevState.map(item =>
+          item.id === taskId ? { ...item, active: !item.active } : item
+        )
+      );
+    }
     setTodoList(prevState =>
       prevState.map(item =>
         item.id === taskId ? { ...item, active: !item.active } : item
@@ -34,10 +49,19 @@ export const useTodoList = () => {
     e.preventDefault()    
     let updatedTodo = []
 
-    updatedTodo = buttonType === 'active' ? todoList.filter( todoList => todoList.active ) : 
-                  buttonType === 'completed' ? todoList.filter( todoList => !todoList.active ): [] 
+    if(buttonType === 'active'){
+      setActiveFilter({active: true, type: 'active'})
+      updatedTodo = todoList.filter( todoList => todoList.active )
+    }
+    if(buttonType === 'completed'){
+      setActiveFilter({active: true, type: 'completed'})
+      updatedTodo = todoList.filter( todoList => !todoList.active )
+    }
+    if(buttonType === 'all'){
+      setActiveFilter({active: false, type: 'all'})
+      updatedTodo = todoList
+    }
                   
-    console.log(updatedTodo);
     setTodoFilter(updatedTodo)
   }
 
@@ -51,11 +75,12 @@ export const useTodoList = () => {
   return {
     todoList,
     todoFilter,
+    activeFilter,
     addItemTodo,
     removeItemTodo,
     filterTodo,
     changeActiveField,
-    restartTodo
+    restartTodo,
   }
 }
 

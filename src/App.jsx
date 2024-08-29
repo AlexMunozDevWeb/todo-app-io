@@ -6,7 +6,8 @@ import { useTodoList } from "./hooks/useTodoList"
 function App() {
 
   const {todoList,
-         todoFilter, 
+         todoFilter,
+         activeFilter, 
          addItemTodo,
          removeItemTodo,
          filterTodo,
@@ -26,6 +27,7 @@ function App() {
         filterTodo={filterTodo}
         changeActiveField={changeActiveField}
         restartTodo={restartTodo}
+        activeFilter={activeFilter}
       />
     </>
   )
