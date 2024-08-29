@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const DarkModeStyles = styled.div`
 
   /* Light mode */
-  /* &.light-mode{ */
-
+  &.light-mode{
     input[type="text"]{
       background-color: var(--very-light-grayish-blue);
       color: var(--dark-grayish-blue);
@@ -18,9 +17,10 @@ export const DarkModeStyles = styled.div`
       button.add-task{
         background-color: var(--very-light-grayish-blue);
         border: 2px solid var(--very-dark-grayish-blue);
+
       }
     }
-  
+     
     .main-content{
       background-color: var(--light-grayish-blue);
       .container .tasks-filter-container{
@@ -47,10 +47,13 @@ export const DarkModeStyles = styled.div`
       label.img-box{
         background-color: var(--very-light-grayish-blue);
         border: 2px solid var(--dark-grayish-blue);
+        &:hover{
+          border: unset;
+        }
       }
     }
 
-  /* } */
+  }
 
   /* Dark mode */
   &.dark-mode{
@@ -97,6 +100,9 @@ export const DarkModeStyles = styled.div`
       label.img-box{
         background-color: var(--very-dark-desaturated-blue);
         border: 2px solid var(--very-dark-grayish-blue);
+        &::before{
+          top: -2px; left: -3px;
+        }
       }
     }
 

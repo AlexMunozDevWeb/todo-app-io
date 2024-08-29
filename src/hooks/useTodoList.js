@@ -8,7 +8,8 @@ export const useTodoList = () => {
   const [darkMode, setDarkMode] = useState( true )
 
   useEffect(() => {
-    darkMode ? document.getElementById('main-app').classList.add('dark-mode') : document.getElementById('main-app').classList.remove('dark-mode')
+    darkMode ? document.querySelector('.main-app').classList.replace('light-mode', 'dark-mode') 
+             : document.querySelector('.main-app').classList.replace('dark-mode', 'light-mode')
   }, [darkMode]);
 
   // Add an element to the state

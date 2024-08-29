@@ -18,7 +18,7 @@ function App() {
          changeDarkMode} = useTodoList()
       
   return (
-    <DarkModeStyles id="main-app">
+    <DarkModeStyles className="main-app dark-mode">
       <Header
         todoList={todoList}
         addItem={addItemTodo}

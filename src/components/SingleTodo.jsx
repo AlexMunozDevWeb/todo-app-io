@@ -31,6 +31,10 @@ const StyleTask = styled.div`
       cursor: pointer;
       
       height: 31px; width: 31px;
+
+      &:hover{
+        border: none;
+      }
       
       > img {
         height: 12px; width: 13px;
@@ -47,7 +51,7 @@ const StyleTask = styled.div`
         position: absolute;
         border-radius: 50%;
         height: 31px; width: 31px;
-        top: -3px; left: -2px;
+        top: 0px; left: 0px;
         padding: 2px;
         z-index: 0;
         

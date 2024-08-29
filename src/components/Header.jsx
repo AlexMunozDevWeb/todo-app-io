@@ -53,19 +53,21 @@ const StyledHeader = styled.header`
   .form-wrapper{
     button.add-task{
       position: relative;
+      cursor: pointer;
 
       border-radius: 50%;
-
-      cursor: pointer;
-      
       height: 28px; width: 30px;
+
+      &:hover{
+        border: unset!important;
+      } 
 
       &::before {
         content: '';
         position: absolute;
         border-radius: 50%;
         height: 29px; width: 30px;
-        top: -3px; left: -2px;
+        top: 0px; left: 0px;
         padding: 2px;
         z-index: 0;
   
