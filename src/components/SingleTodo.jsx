@@ -105,7 +105,10 @@ export default function SingleTodo( { task, removeItemTodo, indice, changeActive
       />
       
       <label className="img-box" htmlFor={`task_${indice}`}>
-        <img src="../public/images/icon-check.svg" alt="Imagen check" />
+        <img 
+          src="/images/icon-check.svg" 
+          alt="Imagen check" 
+        />
       </label>
 
       <label className="task-name">{task.name}</label>
