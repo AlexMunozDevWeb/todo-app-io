@@ -83,7 +83,6 @@ p{
   color: var(--dark-grayish-blue);
 }
 
-/** Inputs styles **/
 /* Input wrapper */
 .form-wrapper{
   display: flex;
@@ -91,135 +90,13 @@ p{
   gap: 15px;
   position: relative;
   
-  background-color: var(--very-dark-desaturated-blue);
   border-radius: 7px;
   padding: 10px 20px;
   min-height: 65px;
-}
-
-/* Input text */
-input[type="text"]{
-  background-color: var(--very-dark-desaturated-blue);
-  border: none;
-  color: var(--light-grayish-blue-hover);
-  line-height: 15px;
-  padding: 10px 5px;
-  width: 100%;
-}
-input[type="text"]:active,
-input[type="text"]:focus{
-  outline: none;  
-}
-
-/* Label for checkbox */
-label.img-box{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  left: -29px;
-
-  background-color: var(--very-dark-desaturated-blue);
-  border: 2px solid var(--very-dark-grayish-blue);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  
-  height: 31px; width: 31px;
-}
-label.img-box::before {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  height: 31px; width: 31px;
-  top: -3px; left: -2px;
-  padding: 2px;
-  z-index: 0;
-  
-  background: var(--check-background);
-  -webkit-mask: 
-  linear-gradient(#fff 0 0) content-box, 
-  linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-label.img-box:hover::before {
-  opacity: 1;
-}
-label.img-box > img {
-  height: 12px; width: 13px;
-  opacity: 0;
-  z-index: 1;
-}
-input[type="checkbox"]:checked + label.img-box > img{
-  opacity: 1;
-}
-input[type="checkbox"]:checked + label.img-box::after{
-  content: "";
-  position: absolute;
-  background: var(--check-background);
-  border-radius: 50%;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-}
-input[type="checkbox"]:checked + label.img-box::before{
-  content: unset;
 }
 
 /* Label styles */
 label{
   color: var(--dark-grayish-blue);
   height: 15px;
-}
-/** Button styles **/
-/* Button add-task */
-button.add-task{
-  position: relative;
-
-  background-color: var(--very-dark-desaturated-blue);
-  border: 2px solid var(--very-dark-grayish-blue);
-  border-radius: 50%;
-
-  transition: all 0.3s ease;
-  cursor: pointer;
-  
-  height: 28px; width: 30px;
-}
-button.add-task::before {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  height: 29px; width: 30px;
-  top: -3px; left: -2px;
-  padding: 2px;
-  z-index: 0;
-
-  background: var(--check-background); /* Gradient colors */
-  -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-}
-button.add-task:hover::before {
-  opacity: 1;
-}
-/* Button form-button */
-button.form-button{
-  background-color: var(--very-dark-desaturated-blue);
-  border: unset;
-  color: var(--dark-grayish-blue);
-  cursor: pointer;
-  transition: all .3s ease;
-}
-button.form-button:hover{
-  color: var(--light-grayish-blue-hover) ;
-}
-button.form-button.active,
-button.form-button.active:hover{
-  color: var(--blue-bright);
 }
