@@ -8,9 +8,7 @@ export const useTodoList = () => {
 
   // Add an element to the state
   function addItemTodo(task) {    
-    if(activeFilter.type !== 'completed'){
-      setTodoFilter( [...todoFilter, task] )
-    }
+    activeFilter.type !== 'completed' && setTodoFilter([...todoFilter, task])
     setTodoList( [...todoList, task] )
   }
 
@@ -52,22 +50,25 @@ export const useTodoList = () => {
     if(buttonType === 'active'){
       setActiveFilter({active: true, type: 'active'})
       updatedTodo = todoList.filter( todoList => todoList.active )
-    }
-    if(buttonType === 'completed'){
+
+    }else if(buttonType === 'completed'){
       setActiveFilter({active: true, type: 'completed'})
       updatedTodo = todoList.filter( todoList => !todoList.active )
-    }
-    if(buttonType === 'all'){
+
+    }else if(buttonType === 'all'){
       setActiveFilter({active: false, type: 'all'})
       updatedTodo = todoList
+
     }
                   
     setTodoFilter(updatedTodo)
   }
 
   // Restart the TODO list
-  function restartTodo(e){
+  function clearCompleted(e){
     e.preventDefault()
+    const updatedFilter = todoFilter.filter( todoList => todoList.active === true )
+    setTodoFilter(updatedFilter)
     const updatedTodo = todoList.filter( todoList => todoList.active === true )
     setTodoList(updatedTodo)
   }
@@ -80,7 +81,7 @@ export const useTodoList = () => {
     removeItemTodo,
     filterTodo,
     changeActiveField,
-    restartTodo,
+    clearCompleted,
   }
 }
 

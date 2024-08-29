@@ -12,7 +12,7 @@ function App() {
          removeItemTodo,
          filterTodo,
          changeActiveField,
-         restartTodo} = useTodoList()
+         clearCompleted} = useTodoList()
       
   return (
     <>
@@ -26,7 +26,7 @@ function App() {
         removeItemTodo={removeItemTodo}
         filterTodo={filterTodo}
         changeActiveField={changeActiveField}
-        restartTodo={restartTodo}
+        clearCompleted={clearCompleted}
         activeFilter={activeFilter}
       />
     </>

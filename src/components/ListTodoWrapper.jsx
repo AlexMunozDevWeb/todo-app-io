@@ -58,7 +58,7 @@ const StyleMain = styled.main`
 `; 
 
 export default function ListTodoWrapper({todoList,todoFilter,activeFilter,removeItemTodo,filterTodo,
-                                         changeActiveField, restartTodo}) {
+                                         changeActiveField, clearCompleted}) {
 
   const [activeButton, setActiveButton] = useState(null);
 
@@ -91,7 +91,7 @@ export default function ListTodoWrapper({todoList,todoFilter,activeFilter,remove
               <p>{ activeFilter.active ? `${todoFilter.length} items left` : `${todoList.length} items left` }</p>
               <button 
                 className="form-button"
-                onClick={restartTodo}>Clear Completed</button>
+                onClick={clearCompleted}>Clear Completed</button>
             </div>
           </div>
 
