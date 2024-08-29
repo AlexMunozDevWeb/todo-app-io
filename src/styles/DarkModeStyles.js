@@ -46,6 +46,10 @@ export const DarkModeStyles = styled.div`
     .single-task{
       background-color: var(--very-light-grayish-blue);
       border-bottom: 1px solid var(--light-grayish-blue);
+
+      label.task-name{
+        color: var(--dark-grayish-blue);
+      }
   
       label.img-box{
         background-color: var(--very-light-grayish-blue);
@@ -100,6 +104,10 @@ export const DarkModeStyles = styled.div`
       background-color: var(--very-dark-desaturated-blue);
       border-bottom: 1px solid var(--very-dark-grayish-blue);
 
+      label.task-name{
+        color: var(--dark-grayish-blue);
+      }
+
       label.img-box{
         background-color: var(--very-dark-desaturated-blue);
         border: 2px solid var(--very-dark-grayish-blue);
@@ -108,6 +116,7 @@ export const DarkModeStyles = styled.div`
           top: -2px; left: -3px;
         }
       }
+  
     }
 
   }

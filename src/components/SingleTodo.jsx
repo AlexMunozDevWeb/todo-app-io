@@ -10,10 +10,6 @@ const StyleTask = styled.div`
       border-top-right-radius: 7px;
     }
 
-    .task-name{
-      margin-left: -29px;
-    }
-
     .delete-task{
       position: absolute;
       right: 26px;
@@ -25,7 +21,6 @@ const StyleTask = styled.div`
       align-items: center;
       justify-content: center;
       position: relative;
-      left: -29px;
       height: 15px;
       
       border-radius: 50%;
@@ -66,23 +61,25 @@ const StyleTask = styled.div`
       }
 
     }
-    
-    input[type="checkbox"]:checked + label.img-box {
-      > img{
-        opacity: 1;
+    input[type="checkbox"]{
+      display: none;
+      &:checked + label.img-box {
+        > img{
+          opacity: 1;
+        }
+        &::after{
+          content: "";
+          position: absolute;
+          background: var(--check-background);
+          border-radius: 50%;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+        }
+        &::before{
+          content: unset;
+        }
+        
       }
-      &::after{
-        content: "";
-        position: absolute;
-        background: var(--check-background);
-        border-radius: 50%;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-      }
-      &::before{
-        content: unset;
-      }
-      
     }
 
   }
