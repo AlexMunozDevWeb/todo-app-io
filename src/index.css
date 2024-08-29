@@ -20,7 +20,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 /* Variables */
 :root {
   /* Media queries */
@@ -93,10 +92,4 @@ p{
   border-radius: 7px;
   padding: 10px 20px;
   min-height: 65px;
-}
-
-/* Label styles */
-label{
-  color: var(--dark-grayish-blue);
-  height: 15px;
 }

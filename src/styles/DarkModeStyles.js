@@ -4,13 +4,16 @@ export const DarkModeStyles = styled.div`
 
   /* Light mode */
   &.light-mode{
+    
     input[type="text"]{
       background-color: var(--very-light-grayish-blue);
       color: var(--dark-grayish-blue);
     }
+    
     .title-button-wrapper > h1{ 
         color: var(--very-light-gray);
     }
+
     .form-wrapper{
       background-color: var(--very-light-grayish-blue);
   
@@ -100,6 +103,7 @@ export const DarkModeStyles = styled.div`
       label.img-box{
         background-color: var(--very-dark-desaturated-blue);
         border: 2px solid var(--very-dark-grayish-blue);
+        color: var(--dark-grayish-blue);
         &::before{
           top: -2px; left: -3px;
         }

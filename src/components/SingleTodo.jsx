@@ -26,6 +26,7 @@ const StyleTask = styled.div`
       justify-content: center;
       position: relative;
       left: -29px;
+      height: 15px;
       
       border-radius: 50%;
       cursor: pointer;
