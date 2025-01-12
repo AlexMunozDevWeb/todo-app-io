@@ -8,11 +8,17 @@ export const DarkModeStyles = styled.div`
     input[type="text"]{
       background-color: var(--very-light-grayish-blue);
       color: var(--dark-grayish-blue);
+
+      &:-webkit-autofill {
+        appearance: none;
+        -webkit-text-fill-color: var(--dark-grayish-blue) !important; /* Cambia el color del texto */
+        -webkit-box-shadow: 0 0 0px 1000px var(--very-light-grayish-blue) inset !important;
+        box-shadow: 0 0 0px 1000px var(--very-light-grayish-blue) inset !important;
+      }
+      
     }
     
-    .title-button-wrapper > h1{ 
-        color: var(--very-light-gray);
-    }
+    .title-button-wrapper > h1{ color: var(--very-light-gray); }
 
     .form-wrapper{
       background-color: var(--very-light-grayish-blue);
@@ -68,10 +74,17 @@ export const DarkModeStyles = styled.div`
     input[type="text"]{
       background-color: var(--very-dark-desaturated-blue);
       color: var(--light-grayish-blue-hover);
+
+      &:-webkit-autofill {
+        appearance: none;
+        -webkit-text-fill-color: var(--light-grayish-blue-hover) !important; /* Cambia el color del texto */
+        -webkit-box-shadow: 0 0 0px 1000px var(--very-dark-desaturated-blue) inset !important;
+        box-shadow: 0 0 0px 1000px var(--very-dark-desaturated-blue) inset !important;
+      }
     }
-    .title-button-wrapper > h1{ 
-        color: var(--very-light-gray);
-    }
+    
+    .title-button-wrapper > h1{ color: var(--very-light-gray); }
+
     .form-wrapper{
       background-color: var(--very-dark-desaturated-blue);
   
