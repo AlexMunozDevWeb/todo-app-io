@@ -1,86 +1,116 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+
+const STORAGE_KEY_TODOS = "todo-app-io:todos";
+const STORAGE_KEY_DARK_MODE = "todo-app-io:darkMode";
+
+/**
+ * Lee un valor del localStorage de forma segura.
+ * Devuelve `fallback` si no existe o si el JSON es inválido.
+ */
+function readFromStorage(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw !== null ? JSON.parse(raw) : fallback;
+  } catch {
+    return fallback;
+  }
+}
 
 export const useTodoList = () => {
+  const [todoList, setTodoList] = useState(() =>
+    readFromStorage(STORAGE_KEY_TODOS, []),
+  );
+  const [todoFilter, setTodoFilter] = useState([]);
+  const [activeFilter, setActiveFilter] = useState({
+    active: false,
+    type: "all",
+  });
+  const [darkMode, setDarkMode] = useState(() =>
+    readFromStorage(STORAGE_KEY_DARK_MODE, true),
+  );
 
-  const [todoList, setTodoList] = useState([])
-  const [todoFilter, setTodoFilter] = useState([])
-  const [activeFilter, setActiveFilter] = useState( {active: false, type: 'all'} )
-  const [darkMode, setDarkMode] = useState( true )
-
+  // Persistir todoList en localStorage cuando cambie
   useEffect(() => {
-    darkMode ? document.querySelector('.main-app').classList.replace('light-mode', 'dark-mode') 
-             : document.querySelector('.main-app').classList.replace('dark-mode', 'light-mode')
+    localStorage.setItem(STORAGE_KEY_TODOS, JSON.stringify(todoList));
+  }, [todoList]);
+
+  // Persistir darkMode en localStorage cuando cambie
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY_DARK_MODE, JSON.stringify(darkMode));
   }, [darkMode]);
 
-  // Add an element to the state
-  function addItemTodo(task) {    
-    activeFilter.type !== 'completed' && setTodoFilter([...todoFilter, task])
-    setTodoList( [...todoList, task] )
+  // Aplicar clase dark/light al wrapper principal
+  useEffect(() => {
+    const mainApp = document.querySelector(".main-app");
+    if (!mainApp) return;
+    if (darkMode) {
+      mainApp.classList.replace("light-mode", "dark-mode");
+    } else {
+      mainApp.classList.replace("dark-mode", "light-mode");
+    }
+  }, [darkMode]);
+
+  // Añadir un elemento al estado
+  function addItemTodo(task) {
+    activeFilter.type !== "completed" &&
+      setTodoFilter((prev) => [...prev, task]);
+    setTodoList((prev) => [...prev, task]);
   }
 
-  // Remove an element to the state
-  function removeItemTodo(taskToRemove){
-    if( todoFilter.length > 0 ){
-      const updatedTodoList = todoFilter.filter( todoList => todoList.id !== taskToRemove.id )
-      setTodoFilter(updatedTodoList)
+  // Eliminar un elemento del estado
+  function removeItemTodo(taskToRemove) {
+    if (todoFilter.length > 0) {
+      setTodoFilter((prev) =>
+        prev.filter((item) => item.id !== taskToRemove.id),
+      );
     }
-    const updatedTodoList = todoList.filter( todoList => todoList.id !== taskToRemove.id )
-    setTodoList(updatedTodoList)
+    setTodoList((prev) => prev.filter((item) => item.id !== taskToRemove.id));
   }
 
   /**
-   * @param {*} taskId 
-   * * Updating the field active given the id
-   * * prevState -> es una función que recibe el estado anterios
+   * Alterna el campo `active` de una tarea dado su id.
    */
-  function changeActiveField(taskId){
-    if( todoFilter.length > 0 ){
-      setTodoFilter(prevState =>
-        prevState.map(item =>
-          item.id === taskId ? { ...item, active: !item.active } : item
-        )
+  function changeActiveField(taskId) {
+    const toggle = (prev) =>
+      prev.map((item) =>
+        item.id === taskId ? { ...item, active: !item.active } : item,
       );
+
+    if (todoFilter.length > 0) {
+      setTodoFilter(toggle);
     }
-    setTodoList(prevState =>
-      prevState.map(item =>
-        item.id === taskId ? { ...item, active: !item.active } : item
-      )
-    );
+    setTodoList(toggle);
   }
 
-  // Filter by active todo
-  function filterTodo(e, buttonType){
-    e.preventDefault()    
-    let updatedTodo = []
+  // Filtrar tareas por estado
+  function filterTodo(e, buttonType) {
+    e.preventDefault();
+    let updatedTodo = [];
 
-    if(buttonType === 'active'){
-      setActiveFilter({active: true, type: 'active'})
-      updatedTodo = todoList.filter( todoList => todoList.active )
-
-    }else if(buttonType === 'completed'){
-      setActiveFilter({active: true, type: 'completed'})
-      updatedTodo = todoList.filter( todoList => !todoList.active )
-
-    }else if(buttonType === 'all'){
-      setActiveFilter({active: false, type: 'all'})
-      updatedTodo = todoList
-
+    if (buttonType === "active") {
+      setActiveFilter({ active: true, type: "active" });
+      updatedTodo = todoList.filter((item) => item.active);
+    } else if (buttonType === "completed") {
+      setActiveFilter({ active: true, type: "completed" });
+      updatedTodo = todoList.filter((item) => !item.active);
+    } else if (buttonType === "all") {
+      setActiveFilter({ active: false, type: "all" });
+      updatedTodo = todoList;
     }
-                  
-    setTodoFilter(updatedTodo)
+
+    setTodoFilter(updatedTodo);
   }
 
-  // Restart the TODO list
-  function clearCompleted(e){
-    e.preventDefault()
-    const updatedFilter = todoFilter.filter( todoList => todoList.active === true )
-    setTodoFilter(updatedFilter)
-    const updatedTodo = todoList.filter( todoList => todoList.active === true )
-    setTodoList(updatedTodo)
+  // Eliminar todas las tareas completadas
+  function clearCompleted(e) {
+    e.preventDefault();
+    const onlyActive = (item) => item.active === true;
+    setTodoFilter((prev) => prev.filter(onlyActive));
+    setTodoList((prev) => prev.filter(onlyActive));
   }
 
   function changeDarkMode() {
-    setDarkMode(!darkMode) 
+    setDarkMode((prev) => !prev);
   }
 
   return {
@@ -93,8 +123,6 @@ export const useTodoList = () => {
     filterTodo,
     changeActiveField,
     clearCompleted,
-    changeDarkMode
-  }
-  
-}
-
+    changeDarkMode,
+  };
+};

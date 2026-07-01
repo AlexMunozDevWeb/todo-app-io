@@ -1,13 +1,22 @@
 {
   "name": "todo-app-io",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Aplicación de gestión de tareas con dark/light mode, filtros por estado y persistencia con localStorage. Construida con React 18 y Vite.",
+  "author": "AlexMunozDevWeb",
+  "license": "MIT",
+  "homepage": "https://github.com/AlexMunozDevWeb/todo-app-io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexMunozDevWeb/todo-app-io.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "normalize.css": "^8.0.1",

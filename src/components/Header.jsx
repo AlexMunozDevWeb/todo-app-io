@@ -1,155 +1,208 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledHeader = styled.header`
   display: flex;
   position: relative;
 
-  min-height: 300px; width: 100%;
+  min-height: 300px;
+  width: 100%;
   padding: 50px 0 85px 0;
 
-  input[type="text"]{
+  input[type="text"] {
     border: none;
     line-height: 15px;
     padding: 10px 5px;
     width: 100%;
+    background: transparent;
 
-    &:active, &:focus{
-      outline: none;  
+    &:active,
+    &:focus {
+      outline: none;
     }
   }
 
-  .bg-image{
+  .bg-image {
     position: absolute;
-    width: 100%;height: 100%;
-
+    width: 100%;
+    height: 100%;
     top: 0;
     object-fit: cover;
     z-index: -1;
   }
 
-  .title-button-wrapper{
+  .title-button-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
 
-    > h1{
+    > h1 {
       height: 31px;
       letter-spacing: 10px;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--very-light-gray);
     }
 
-    > button{
+    > button.theme-toggle {
       background-color: transparent;
       border: none;
       cursor: pointer;
       height: fit-content;
-    }
+      padding: 4px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        opacity 0.2s ease,
+        transform 0.3s ease;
 
+      &:hover {
+        opacity: 0.8;
+        transform: rotate(20deg);
+      }
+
+      > img {
+        width: 26px;
+        height: 26px;
+      }
+    }
   }
 
-  .form-wrapper{
-    button.add-task{
+  .form-wrapper {
+    button.add-task {
       position: relative;
       cursor: pointer;
+      flex-shrink: 0;
 
       border-radius: 50%;
-      height: 28px; width: 30px;
+      height: 30px;
+      width: 30px;
+      transition: transform 0.2s ease;
 
-      &:hover{
-        border: unset!important;
-      } 
+      &:hover {
+        transform: scale(1.1);
+      }
 
       &::before {
-        content: '';
+        content: "";
         position: absolute;
+        inset: 0;
         border-radius: 50%;
-        height: 29px; width: 30px;
-        top: 0px; left: 0px;
         padding: 2px;
         z-index: 0;
-  
-        background: var(--check-background); /* Gradient colors */
-        -webkit-mask: 
-            linear-gradient(#fff 0 0) content-box, 
-            linear-gradient(#fff 0 0);
+
+        background: var(--check-background);
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
         -webkit-mask-composite: destination-out;
         mask-composite: exclude;
         opacity: 0;
+        transition: opacity 0.2s ease;
       }
 
       &:hover::before {
         opacity: 1;
       }
-
     }
-    
   }
 `;
 
-// Se le pasa por parámetro la desestructuración del objeto para facilitar su acceso
-export default function Header( {addItem, darkMode, changeDarkMode} ) {
+/**
+ * Crea un objeto de tarea nuevo con id único.
+ * @param {string} name - Nombre de la tarea
+ * @returns {{ id: string, active: boolean, name: string }}
+ */
+function createTodo(name) {
+  return { id: uuidv4(), active: true, name };
+}
 
-  const bgDarkMode = darkMode ? 'bg-mobile-dark.webp' : 'bg-mobile-light.webp'
-  const iconDarkMode = darkMode ? 'icon-sun.svg' : 'icon-moon.svg'
+/**
+ * Cabecera de la aplicación.
+ * Muestra el título, el toggle de tema y el formulario para añadir tareas.
+ */
+Header.propTypes = {
+  addItem: PropTypes.func.isRequired,
+  darkMode: PropTypes.bool.isRequired,
+  changeDarkMode: PropTypes.func.isRequired,
+};
 
-  const [newTodo, setNewTodo] = useState('')
+export default function Header({ addItem, darkMode, changeDarkMode }) {
+  const bgImage = darkMode ? "bg-mobile-dark.webp" : "bg-mobile-light.webp";
+  const iconDarkMode = darkMode ? "icon-sun.svg" : "icon-moon.svg";
+  const themeLabel = darkMode
+    ? "Cambiar a modo claro"
+    : "Cambiar a modo oscuro";
 
-  // Evento que obtiene el valor del input y se le añade al state temporal
+  const [newTodo, setNewTodo] = useState("");
+
   const handleChange = (e) => {
-    setNewTodo( e.target.value )
-  }
+    setNewTodo(e.target.value);
+  };
 
-  // Evento click que añade el string del state temporal al de la lista de TODOS
-  const handleClick = (e) => {
-    e.preventDefault()
-    if (newTodo.length > 0) {
-      addItem( {id: uuidv4(),
-                active: true,
-                name: newTodo} )
-      setNewTodo('')
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const trimmed = newTodo.trim();
+    if (trimmed.length > 0) {
+      addItem(createTodo(trimmed));
+      setNewTodo("");
     }
-  }
+  };
 
   return (
     <StyledHeader>
-      <img 
-        src={`/images/${bgDarkMode}`} 
-        alt="Imagen desktop dark mode" 
-        className="bg-image"
-      />
+      <picture>
+        <source
+          media="(min-width: 601px)"
+          srcSet={`/images/${darkMode ? "bg-desktop-dark.webp" : "bg-desktop-light.webp"}`}
+        />
+        <img
+          src={`/images/${bgImage}`}
+          alt=""
+          aria-hidden="true"
+          className="bg-image"
+        />
+      </picture>
 
       <div className="container">
         <div className="title-button-wrapper">
-
           <h1>TODO</h1>
-          <button 
+          <button
+            className="theme-toggle"
             onClick={changeDarkMode}
+            aria-label={themeLabel}
+            title={themeLabel}
+            type="button"
           >
-            <img src={`/images/${iconDarkMode}`} alt="Imagen para cambiar a dark/light mode" />
+            <img src={`/images/${iconDarkMode}`} alt="" aria-hidden="true" />
           </button>
-
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit} aria-label="Añadir nueva tarea">
           <div className="form-wrapper">
-            <button 
-              className="add-task" 
-              onClick={handleClick}
+            <button
+              className="add-task"
+              type="submit"
+              aria-label="Añadir tarea"
+              title="Añadir tarea"
             />
-            <input 
-              type="text" 
-              id="text_todo" 
+            <input
+              type="text"
+              id="text_todo"
+              name="todo"
               placeholder="Crear nuevo todo..."
               value={newTodo}
               onChange={handleChange}
+              autoComplete="off"
+              aria-label="Nueva tarea"
             />
           </div>
         </form>
-
       </div>
     </StyledHeader>
-  )
+  );
 }

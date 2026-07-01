@@ -1,43 +1,52 @@
 @font-face {
-  font-family: 'Josefin Sans';
-  src: url('/fonts/JosefinSans-Bold.eot');
-  src: url('/fonts/JosefinSans-Bold.eot?#iefix') format('embedded-opentype'),
-      url('/fonts/JosefinSans-Bold.woff2') format('woff2'),
-      url('/fonts/JosefinSans-Bold.woff') format('woff'),
-      url('/fonts/JosefinSans-Bold.ttf') format('truetype');
+  font-family: "Josefin Sans";
+  src: url("/fonts/JosefinSans-Bold.eot");
+  src:
+    url("/fonts/JosefinSans-Bold.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/JosefinSans-Bold.woff2") format("woff2"),
+    url("/fonts/JosefinSans-Bold.woff") format("woff"),
+    url("/fonts/JosefinSans-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Josefin Sans';
-  src: url('/fonts/JosefinSans-Regular.eot');
-  src: url('/fonts/JosefinSans-Regular.eot?#iefix') format('embedded-opentype'),
-      url('/fonts/JosefinSans-Regular.woff2') format('woff2'),
-      url('/fonts/JosefinSans-Regular.woff') format('woff'),
-      url('/fonts/JosefinSans-Regular.ttf') format('truetype');
+  font-family: "Josefin Sans";
+  src: url("/fonts/JosefinSans-Regular.eot");
+  src:
+    url("/fonts/JosefinSans-Regular.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/JosefinSans-Regular.woff2") format("woff2"),
+    url("/fonts/JosefinSans-Regular.woff") format("woff"),
+    url("/fonts/JosefinSans-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
-/* Variables */
+
+/* ============================
+   Variables CSS
+   ============================ */
 :root {
-  /* Media queries */
+  /* Breakpoints */
   --mobile: 600px;
   --desktop: 1440px;
 
-  /* Primary Colours */
+  /* Primary */
   --blue-bright: hsl(220, 98%, 61%);
-  --check-background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  --check-background: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
 
-  /* Neutral - light theme */
+  /* Light theme */
   --very-light-gray: hsl(0, 0%, 98%);
   --very-light-grayish-blue: hsl(236, 33%, 92%);
-  --light-grayish-blue: hsl(233, 11%, 84%);
-  --dark-grayish-blue: hsl(236, 9%, 61%);
-  --very-dark-grayish-blue: hsl(235, 19%, 35%);
+  --light-grayish-blue-light: hsl(233, 11%, 84%);
+  --dark-grayish-blue-light: hsl(236, 9%, 61%);
+  --very-dark-grayish-blue-light: hsl(235, 19%, 35%);
 
-  /* dark theme */
+  /* Dark theme */
   --very-dark-blue: hsl(235, 21%, 11%);
   --very-dark-desaturated-blue: hsl(235, 24%, 19%);
   --light-grayish-blue: hsl(234, 39%, 85%);
@@ -45,28 +54,17 @@
   --dark-grayish-blue: hsl(234, 11%, 52%);
   --very-dark-grayish-blue: hsl(233, 14%, 35%);
   --very-dark-grayish-blue-two: hsl(237, 14%, 26%);
+
+  /* Transitions */
+  --transition-speed: 0.3s;
+  --transition-ease: ease;
 }
 
-/*** General styles ***/
-body{
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 18px;
-}
-.container{
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-@media (max-width: 600px){
-  .container{
-    width: 100%;
-  }
-}
-@media (min-width: 601px){
-  .container{
-    width: 768px;
-  }
+/* ============================
+   Reset & Base
+   ============================ */
+html {
+  scroll-behavior: smooth;
 }
 
 *,
@@ -74,21 +72,93 @@ body{
 *::after {
   box-sizing: border-box;
 }
-body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
-    margin: 0;
-    padding: 0;
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
 }
-p{
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================
+   Accesibilidad — Focus visible
+   ============================ */
+:focus-visible {
+  outline: 2px solid var(--blue-bright);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ============================
+   Transiciones globales de tema
+   ============================ */
+body,
+.form-wrapper,
+.single-task,
+button,
+input,
+label,
+p {
+  transition:
+    background-color var(--transition-speed) var(--transition-ease),
+    color var(--transition-speed) var(--transition-ease),
+    border-color var(--transition-speed) var(--transition-ease);
+}
+
+/* ============================
+   Layout — Contenedor
+   ============================ */
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 601px) {
+  .container {
+    width: 768px;
+  }
+}
+
+/* ============================
+   Tipografía
+   ============================ */
+p {
   color: var(--dark-grayish-blue);
 }
 
-/* Input wrapper */
-.form-wrapper{
+/* ============================
+   Input wrapper / Form wrapper
+   ============================ */
+.form-wrapper {
   display: flex;
   align-items: center;
   gap: 15px;
   position: relative;
-  
+
   border-radius: 7px;
   padding: 10px 20px;
   min-height: 65px;
