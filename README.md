@@ -4,7 +4,7 @@
 
 ![React](https://img.shields.io/badge/React-18.3-61DAFB?style=flat-square&logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=flat-square&logo=vite&logoColor=white)
-![Styled Components](https://img.shields.io/badge/Styled_Components-6.1-DB7093?style=flat-square&logo=styled-components&logoColor=white)
+![Styled Components](https://img.shields.io/badge/Styled_Components-6.4-DB7093?style=flat-square&logo=styled-components&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
 https://todo-task-app-io.netlify.app/
@@ -33,13 +33,13 @@ https://todo-task-app-io.netlify.app/
 |---|---|---|
 | [React](https://react.dev/) | `18.3.x` | Librería UI — componentes y hooks |
 | [Vite](https://vitejs.dev/) + [plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) | `5.4.x` | Build tool con transpilación SWC (más rápido que Babel) |
-| [Styled Components](https://styled-components.com/) | `6.1.x` | CSS-in-JS — estilos por componente con soporte de temas |
+| [Styled Components](https://styled-components.com/) | `6.4.x` | CSS-in-JS — estilos por componente con soporte de temas |
 | [normalize.css](https://necolas.github.io/normalize.css/) | `8.0.x` | Reset CSS cross-browser |
-| [uuid](https://github.com/uuidjs/uuid) | `10.0.x` | Generación de IDs únicos para cada tarea |
+| [uuid](https://github.com/uuidjs/uuid) | `14.0.x` | Generación de IDs únicos para cada tarea |
 | [ESLint](https://eslint.org/) | `9.9.x` | Linting estático de código JavaScript/JSX |
 
 ### Fuentes
-- **Josefin Sans** (Bold + Regular) — cargada localmente en `/public/fonts/`
+- **Josefin Sans** (Bold + Regular) — cargadas localmente en `/public/fonts/`
 
 ---
 
@@ -136,7 +136,9 @@ todo-app-io/
 ├── index.html                  # HTML base con meta SEO y Open Graph
 ├── vite.config.js              # Configuración de Vite
 ├── eslint.config.js            # Configuración de ESLint (flat config)
-└── package.json                # Metadatos y dependencias del proyecto
+├── package.json                # Metadatos y dependencias del proyecto
+├── package-lock.json           # Lockfile de dependencias
+└── .gitignore                  # Archivos ignorados por Git
 ```
 
 ---
@@ -159,4 +161,4 @@ Las variables CSS en `:root` sirven como tokens de diseño globales. Las reglas 
 
 ## 📄 Licencia
 
-Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](./LICENSE) para más información.
+Este proyecto está bajo la licencia **MIT**.
