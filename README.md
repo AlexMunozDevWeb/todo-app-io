@@ -7,6 +7,10 @@
 ![Styled Components](https://img.shields.io/badge/Styled_Components-6.1-DB7093?style=flat-square&logo=styled-components&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
+https://todo-task-app-io.netlify.app/
+
+<img width="1558" height="671" alt="image" src="https://github.com/user-attachments/assets/4c0b29c5-9150-4e3d-95e5-0a24684ecbad" />
+
 ---
 
 ## ✨ Características
